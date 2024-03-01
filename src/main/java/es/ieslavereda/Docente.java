@@ -1,6 +1,8 @@
 package es.ieslavereda;
 
-public class Docente extends Persona {
+import java.io.Serializable;
+
+public class Docente extends Persona implements Serializable {
     private String DNI;
 
     public Docente(String nombre, String apellidos, int edad, String email, String DNI) {

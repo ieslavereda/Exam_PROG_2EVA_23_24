@@ -1,6 +1,8 @@
 package es.ieslavereda;
 
-public abstract class Persona implements Imprimible {
+import java.io.Serializable;
+
+public abstract class Persona implements Imprimible, Comparable<Persona>, Serializable {
     protected String nombre;
     private String apellidos;
     private int edad;
@@ -35,6 +37,13 @@ public abstract class Persona implements Imprimible {
     @Override
     public int hashCode() {
         return getID().toLowerCase().hashCode();
+    }
+
+    @Override
+    public int compareTo(Persona o) {
+        return (apellidos.compareToIgnoreCase(o.apellidos)==0)?
+                nombre.compareToIgnoreCase(o.nombre):
+                apellidos.compareToIgnoreCase(o.apellidos);
     }
 
     @Override

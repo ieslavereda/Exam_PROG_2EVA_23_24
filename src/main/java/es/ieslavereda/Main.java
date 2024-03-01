@@ -4,11 +4,9 @@ import es.ieslavereda.Alumno.Ciclo;
 import es.ieslavereda.Alumno.Curso;
 import es.ieslavereda.Alumno.Titulo;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,8 +16,64 @@ public class Main {
         Map<Titulo,List<Alumno>> alumnosTitulo = getAlumnosTitulo(personas);
 
 
-       // imprimirCarnets(new HashSet<>(personas));
-        imprimirCarnets(new HashSet<>(alumnosTitulo.get(Titulo.ASIR_1)));
+        // imprimir carnets de alumnos ordenados edad
+        imprimirCarnets(getAlumnosSortedByAge(personas));
+
+        // imprimir carnets de todos ordenados alfabeticamente
+        imprimirCarnets(getPersonsSorted(personas));
+
+        // guardar listado de alumnos de 1DAW
+        save(alumnosTitulo.get(Titulo.ASIR_1));
+
+        // guardar personas como objeto
+        saveAsObject(personas);
+
+        // cargar personas
+        //loadObjectFile();
+
+    }
+
+    private static Set<Persona> loadObjectFile() {
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("personas"))){
+
+            return (Set<Persona>) ois.readObject();
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void saveAsObject(Set<Persona> personas) {
+
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("personas"))) {
+
+            oos.writeObject(personas);
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    private static Collection<Imprimible> getPersonsSorted(Set<Persona> personas) {
+        return personas.stream()
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    private static List<Imprimible> getAlumnosSortedByAge(Set<Persona> personas){
+
+        return personas.stream()
+                .filter(p -> p instanceof Alumno)
+                .map(p-> (Alumno)p)
+                .sorted(Comparator.comparingInt(Persona::getEdad))
+                .collect(Collectors.toList());
 
     }
 
@@ -39,7 +93,6 @@ public class Main {
         }
         return titulos;
     }
-
 
     private static Set<Persona> cargarDatos(String file) {
 
@@ -86,6 +139,20 @@ public class Main {
             System.out.println(i.getTipo());
             System.out.println(i.getFullName());
             System.out.println("-----------------------");
+        }
+    }
+
+    private static void save(Collection<Alumno> alumnos){
+
+        try(PrintWriter pw = new PrintWriter(new FileWriter("alumnos.csv"))){
+            String linea="Nombre,Apellidos,NIA,Edad,Mail,Curso,Ciclo";
+            pw.println(linea);
+
+            for (Alumno alumno:alumnos)
+                pw.println(alumno.getNombre()+","+alumno.getApellidos()+","+alumno.getNIA()+","+alumno.getEdad()+","+alumno.getEmail()+","+alumno.getTitulo());
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

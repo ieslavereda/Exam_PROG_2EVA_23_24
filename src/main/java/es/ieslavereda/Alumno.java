@@ -1,6 +1,8 @@
 package es.ieslavereda;
 
-public class Alumno extends Persona {
+import java.io.Serializable;
+
+public class Alumno extends Persona implements Serializable {
     private String NIA;
     private Titulo titulo;
 
@@ -18,7 +20,9 @@ public class Alumno extends Persona {
         return nombre;
     }
 
-
+    public String getNIA() {
+        return NIA;
+    }
 
     @Override
     public String getTipo() {
@@ -87,7 +91,7 @@ public class Alumno extends Persona {
 
         @Override
         public String toString() {
-            return curso.toString()+ciclo ;
+            return curso.toString()+","+ciclo ;
         }
     }
 }
