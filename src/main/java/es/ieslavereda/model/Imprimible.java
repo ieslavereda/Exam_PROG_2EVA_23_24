@@ -1,4 +1,4 @@
-package es.ieslavereda;
+package es.ieslavereda.model;
 
 public interface Imprimible {
     String getFullName();

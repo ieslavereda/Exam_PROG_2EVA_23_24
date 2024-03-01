@@ -1,8 +1,12 @@
 package es.ieslavereda;
 
-import es.ieslavereda.Alumno.Ciclo;
-import es.ieslavereda.Alumno.Curso;
-import es.ieslavereda.Alumno.Titulo;
+import es.ieslavereda.model.Alumno;
+import es.ieslavereda.model.Alumno.Ciclo;
+import es.ieslavereda.model.Alumno.Curso;
+import es.ieslavereda.model.Alumno.Titulo;
+import es.ieslavereda.model.Docente;
+import es.ieslavereda.model.Imprimible;
+import es.ieslavereda.model.Persona;
 
 import java.io.*;
 import java.util.*;
