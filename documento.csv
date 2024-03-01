@@ -1,0 +1,11 @@
+Tipo,Nombre,Apellidos,NIA,DNI,Edad,Mail,Curso,Ciclo
+Alumno,Pedro,Lopez Sanz,111234244,,18,plopez@alu.edu.gva.es,1,DAW
+Alumno,Luis,Martinez Gonzalez,111424551,,22,lmartinez@alu.edu.gva.es,2,DAM
+Docente,Carlos,Martinez Ramos,,67453398D,52,cmartinez@edu.gva.es,,
+Alumno,Carmen,Garcia Lujan,114223589,,23,cgarcia@alu.gva.es,2,DAW
+Docente,Juan,Hueso Ramos,,433829873F,36,jhueso@edu.gva.es,,
+Alumno,Lorena,Tarrega Navarro,114323451,,19,ltarrega@alu.gva.es,1,ASIR
+Alumno,Ramon,Anton Navarro,122344213,,22,ltarrega@alu.gva.es,1,ASIR
+Alumno,Jorge,Tarrega Lopez,112325216,,18,ltarrega@alu.gva.es,1,ASIR
+Alumno,Sergio,Tarrega Nan,111251266,,21,ltarrega@alu.gva.es,1,ASIR
+Alumno,Roberto,Jimenez Navarro,119399794,,20,ltarrega@alu.gva.es,1,ASIR
