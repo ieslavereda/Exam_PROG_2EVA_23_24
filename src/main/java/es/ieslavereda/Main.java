@@ -11,10 +11,11 @@ import java.util.stream.Collectors;
 public class Main {
     public static void main(String[] args) {
 
+        // cargar datos desde csv
         Set<Persona> personas = cargarDatos("documento.csv");
 
+        // pasar de Set<Persona> a Map<Titulo,List<Alumno>>
         Map<Titulo,List<Alumno>> alumnosTitulo = getAlumnosTitulo(personas);
-
 
         // imprimir carnets de alumnos ordenados edad
         imprimirCarnets(getAlumnosSortedByAge(personas));
