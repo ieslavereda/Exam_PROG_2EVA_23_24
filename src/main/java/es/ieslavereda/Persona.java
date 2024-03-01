@@ -31,4 +31,18 @@ public abstract class Persona implements Imprimible {
     public String getEmail() {
         return email;
     }
+
+    @Override
+    public int hashCode() {
+        return getID().toLowerCase().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj==null) return false;
+        if(!(obj instanceof Persona)) return false;
+        Persona p = (Persona) obj;
+
+        return p.getID().equalsIgnoreCase(getID());
+    }
 }
