@@ -43,11 +43,7 @@ public class Main {
 
             return (Set<Persona>) ois.readObject();
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -58,8 +54,6 @@ public class Main {
 
             oos.writeObject(personas);
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -120,7 +114,7 @@ public class Main {
             String l;
             br.readLine(); // Eliminamos la primera linea
             while ((l = br.readLine()) != null) {
-                String fields[] = l.split(",");
+                String[] fields = l.split(",");
                 String nombre = fields[1];
                 String apellidos = fields[2];
                 int edad = Integer.parseInt(fields[5]);
