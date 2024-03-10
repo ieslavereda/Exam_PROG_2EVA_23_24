@@ -86,6 +86,17 @@ public class Main {
 
         Map<Titulo, List<Alumno>> titulos= new HashMap<>();
 
+        personas.stream()
+                .filter( p -> p instanceof Alumno)
+                .map(persona -> (Alumno) persona)
+                .forEach( alumno -> {
+                    if(titulos.containsKey(alumno.getTitulo()))
+                        titulos.get(alumno.getTitulo()).add(alumno);
+                    else
+                        titulos.put(alumno.getTitulo(),new ArrayList<>(List.of(alumno)));
+                });
+
+        /*
         for(Persona persona : personas){
             if(persona instanceof Alumno){
                 Alumno alumno = (Alumno) persona;
@@ -96,6 +107,8 @@ public class Main {
                 }
             }
         }
+        */
+
         return titulos;
     }
 
@@ -107,31 +120,29 @@ public class Main {
             String l;
             br.readLine(); // Eliminamos la primera linea
             while ((l = br.readLine()) != null) {
-                String a[] = l.split(",");
-                String nombre = a[1];
-                String apellidos = a[2];
-                int edad = Integer.parseInt(a[5]);
-                String mail = a[6];
+                String fields[] = l.split(",");
+                String nombre = fields[1];
+                String apellidos = fields[2];
+                int edad = Integer.parseInt(fields[5]);
+                String mail = fields[6];
 
-                if (a[0].equalsIgnoreCase("Alumno")) {
+                if (fields[0].equalsIgnoreCase("Alumno")) {
                     try {
-                        String NIA = a[3];
-                        Curso curso = Curso.getCursoFromInt(Integer.parseInt(a[7]));
-                        Ciclo ciclo = Ciclo.valueOf(a[8]);
+                        String NIA = fields[3];
+                        Curso curso = Curso.getCursoFromInt(Integer.parseInt(fields[7]));
+                        Ciclo ciclo = Ciclo.valueOf(fields[8]);
                         Titulo titulo = Titulo.getTitulo(curso, ciclo);
                         personas.add(new Alumno(nombre, apellidos, edad, mail, NIA, titulo));
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                 } else {
-                    String DNI = a[4];
+                    String DNI = fields[4];
                     personas.add(new Docente(nombre, apellidos, edad, mail, DNI));
                 }
             }
 
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

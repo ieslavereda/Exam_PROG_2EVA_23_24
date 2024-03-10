@@ -1,9 +1,7 @@
 package es.ieslavereda.model;
 
-import java.io.Serializable;
-
-public class Docente extends Persona implements Serializable {
-    private String DNI;
+public class Docente extends Persona {
+    private final String DNI;
 
     public Docente(String nombre, String apellidos, int edad, String email, String DNI) {
         super(nombre, apellidos, edad, email);

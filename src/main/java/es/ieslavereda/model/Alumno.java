@@ -1,10 +1,8 @@
 package es.ieslavereda.model;
 
-import java.io.Serializable;
-
-public class Alumno extends Persona implements Serializable {
-    private String NIA;
-    private Titulo titulo;
+public class Alumno extends Persona {
+    private final String NIA;
+    private final Titulo titulo;
 
     public Alumno(String nombre, String apellidos, int edad, String email, String NIA, Titulo titulo) {
         super(nombre, apellidos, edad, email);
@@ -38,7 +36,7 @@ public class Alumno extends Persona implements Serializable {
     public enum Curso{
         PRIMERO(1),SEGUNDO(2);
 
-        private int value;
+        private final int value;
         Curso(int value) {
             this.value=value;
         }
@@ -57,7 +55,7 @@ public class Alumno extends Persona implements Serializable {
         DAM,
         DAW,
         ASIR,
-        SMR;
+        SMR
     }
     public enum Titulo {
         DAM_1(Curso.PRIMERO,Ciclo.DAM),
@@ -69,8 +67,8 @@ public class Alumno extends Persona implements Serializable {
         SMR_1(Curso.PRIMERO,Ciclo.SMR),
         SMR_2(Curso.SEGUNDO,Ciclo.SMR);
 
-        private Curso curso;
-        private Ciclo ciclo;
+        private final Curso curso;
+        private final Ciclo ciclo;
 
         Titulo(Curso curso, Ciclo ciclo) {
             this.curso = curso;
